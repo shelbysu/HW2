@@ -22,7 +22,7 @@ struct check{
 
 bool operator > (check& check, float amount);
 bool operator <= (check& check, float amount);
-ostream& operator <<(ostream& os, check& check);
+ostream& operator << (ostream& os, check& check);
 
 
 class checkbook{
@@ -77,7 +77,7 @@ bool operator > (check& check, float amount){
 }
 
 ostream& operator<<(ostream& os, check& check){
-    os<< check.checknum<<" "<<check.checkamount<<" "<<check.checkmemo<<endl;
+    os<< check.checknum<< " " <<check.checkamount<< " " <<check.checkmemo<<endl;
     return os;
 }
 
@@ -85,7 +85,7 @@ ostream& operator<<(ostream& os, check& check){
 void checkTest(checkbook checkbook, int bal);
 
 bool checkbook::writeCheck(check c_amount) {
-    if(c_amount>balance)
+    if(c_amount > balance)
         return false;
     else{
         const string randomMemo[6] = {"Water","Ruffles","Book", "Paper","Brush","Wand"};
@@ -100,7 +100,7 @@ bool checkbook::writeCheck(check c_amount) {
 }
 
 void const checkbook::displayChecks() {
-    for(int i=numofchecks; i > 0; i--)
+    for(int i = numofchecks; i > 0; i--)
         cout<<chkPtr[i-1];
 }
 
@@ -118,20 +118,20 @@ void checkTest(checkbook checkbook, int bal){
             checkbook.doubleCheckBookSize();
         bal-=c_amount.checkamount;
     }
-    cout<<"--- "<<endl;
+    cout<<"--------------------- "<<endl;
     checkbook.displayChecks();
-    cout<<" ---"<<endl;
+    cout<<"------------------"<<endl;
 }
 void checkbook::lastDeposit() {
     cout<<chkPtr[numofchecks-1];
 }
 void checkbook::doubleCheckBookSize() {
-    check *ptr = new check [2*checkBookSize];
-    for(int i=0; i<numofchecks;i++){
+    check *ptr = new check [2 * checkBookSize];
+    for(int i=0; i<numofchecks; i++){
         ptr[i]=chkPtr[i];
     }
-    checkBookSize*=2;
+    checkBookSize *= 2;
     delete [] chkPtr;
-    chkPtr=ptr;
-    cout<<"New Check Book has been ordered!"<<endl;
+    chkPtr = ptr;
+    cout<<"A new checkbook has been ordered"<<endl;
 }
